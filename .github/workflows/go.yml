@@ -22,4 +22,6 @@ jobs:
         go build 
 
     - name: Test go-server project
-      run: go test -v ./go-server/
+      run: |
+        cd ./go-server/
+        go clean --testcache && go test
