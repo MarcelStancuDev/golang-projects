@@ -25,3 +25,13 @@ jobs:
       run: |
         cd ./go-server/
         go clean --testcache && go test
+        
+    - name: Build go-docker project
+      run: |
+        cd ./go-docker/
+        go build 
+
+    - name: Test go-docker project
+      run: |
+        cd ./go-docker/
+        go clean --testcache && go test
