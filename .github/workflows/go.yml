@@ -18,9 +18,10 @@ jobs:
 
     - name: Build go-server project
       run: |
-        go mod init ./go-server/
-        go mod tidy ./go-server/
-        go build -v ./go-server/
+        cd ./go-server/
+        go mod init go-server
+        go mod tidy 
+        go build 
 
     - name: Test go-server project
       run: go test -v ./go-server/
