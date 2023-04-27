@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"html"
-	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -17,6 +17,14 @@ func main() {
 		fmt.Fprintf(w, "Hi")
 	})
 
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	server := &http.Server{
+		Addr:              ":8081",
+		ReadHeaderTimeout: 3 * time.Second,
+	}
+
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
 
 }
