@@ -1,0 +1,27 @@
+name: Build and test Go projects
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+
+    - name: Build go-server project
+      run: |
+        cd ./go-server/
+        go build 
+
+    - name: Test go-server project
+      run: |
+        cd ./go-server/
+        go clean --testcache && go test
